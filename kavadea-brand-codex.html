@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kavadea — Brand Codex</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Cormorant:ital,wght@1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --crimson: #6B0F0F;
+    --crimson-light: #8B1A1A;
+    --crimson-dark: #4A0A0A;
+    --crimson-muted: #9B3535;
+    --ivory: #F4EEE0;
+    --ivory-dark: #E8DFCC;
+    --ivory-mid: #EDE5D4;
+    --black: #0A0A0A;
+    --black-soft: #1A1A1A;
+    --charcoal: #2A2A2A;
+    --warm-gray: #5A5050;
+    --gold: #C9A96E;
+    --gold-light: #D4B87A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--ivory);
+    color: var(--black);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--black);
+    padding: 0 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    border-bottom: 1px solid var(--crimson-dark);
+  }
+
+  .nav-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--ivory);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ivory-dark);
+    opacity: 0.7;
+    transition: opacity 0.2s, color 0.2s;
+  }
+
+  .nav-links a:hover { opacity: 1; color: var(--gold); }
+
+  /* ── COVER ── */
+  .cover {
+    height: 100vh;
+    min-height: 700px;
+    background: var(--black);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 80px 40px 60px;
+  }
+
+  .cover-bg-text {
+    position: absolute;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28vw;
+    font-weight: 300;
+    color: var(--crimson-dark);
+    opacity: 0.15;
+    letter-spacing: -10px;
+    user-select: none;
+    line-height: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+  }
+
+  .cover-top-rule {
+    width: 1px;
+    height: 80px;
+    background: var(--crimson);
+    margin-bottom: 40px;
+    opacity: 0.7;
+  }
+
+  .cover-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+  }
+
+  .cover-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(64px, 10vw, 120px);
+    font-weight: 300;
+    color: var(--ivory);
+    letter-spacing: 16px;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1;
+    position: relative;
+  }
+
+  .cover-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 2vw, 22px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--crimson-muted);
+    text-align: center;
+    margin-top: 24px;
+    letter-spacing: 2px;
+  }
+
+  .cover-rule-h {
+    width: 120px;
+    height: 1px;
+    background: var(--crimson);
+    margin: 40px auto;
+    opacity: 0.6;
+  }
+
+  .cover-doc-type {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--ivory);
+    opacity: 0.35;
+    text-align: center;
+  }
+
+  .cover-scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--ivory);
+    opacity: 0.3;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: var(--ivory);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 0.7; transform: scaleY(0.6); }
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 100px 80px;
+  }
+
+  section:nth-child(even) {
+    background: var(--ivory-mid);
+  }
+
+  /* ── CHAPTER HEADER ── */
+  .chapter-header {
+    margin-bottom: 64px;
+    position: relative;
+  }
+
+  .chapter-num {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--crimson);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .chapter-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 400;
+    line-height: 1;
+    color: var(--black);
+    letter-spacing: 2px;
+  }
+
+  .chapter-title em {
+    font-style: italic;
+    color: var(--crimson);
+  }
+
+  .chapter-rule {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .chapter-rule-line {
+    flex: 0 0 60px;
+    height: 1px;
+    background: var(--crimson);
+    opacity: 0.5;
+  }
+
+  .chapter-rule-dot {
+    width: 4px;
+    height: 4px;
+    background: var(--crimson);
+    border-radius: 50%;
+    opacity: 0.5;
+  }
+
+  /* ── BODY TEXT ── */
+  .body-text {
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--charcoal);
+    max-width: 680px;
+    font-weight: 300;
+  }
+
+  .body-text strong {
+    font-weight: 500;
+    color: var(--black);
+  }
+
+  /* ── PULL QUOTE ── */
+  .pull-quote {
+    border-left: 2px solid var(--crimson);
+    padding: 20px 0 20px 40px;
+    margin: 48px 0;
+  }
+
+  .pull-quote p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 3.5vw, 36px);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--black-soft);
+    letter-spacing: 0.5px;
+  }
+
+  .pull-quote cite {
+    display: block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--crimson);
+    margin-top: 16px;
+    font-style: normal;
+  }
+
+  /* ── TWO-COL ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .three-col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+
+  /* ── STAT BLOCK ── */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--ivory-dark);
+    border: 1px solid var(--ivory-dark);
+    margin: 48px 0;
+  }
+
+  .stat-cell {
+    background: var(--ivory);
+    padding: 32px 28px;
+  }
+
+  .stat-cell.dark {
+    background: var(--black);
+  }
+
+  .stat-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--crimson-muted);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .stat-cell.dark .stat-label {
+    color: var(--crimson-muted);
+  }
+
+  .stat-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--black);
+    line-height: 1.1;
+  }
+
+  .stat-cell.dark .stat-value {
+    color: var(--ivory);
+  }
+
+  /* ── MANIFESTO BLOCK ── */
+  .manifesto-block {
+    background: var(--crimson);
+    padding: 80px;
+    margin: 0 -80px;
+    text-align: center;
+  }
+
+  .manifesto-block .manifesto-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 5vw, 56px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--ivory);
+    line-height: 1.3;
+    letter-spacing: 1px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .manifesto-block .manifesto-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--crimson-dark);
+    margin-bottom: 32px;
+    opacity: 0.7;
+  }
+
+  /* ── POSITIONING GRID ── */
+  .positioning-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--ivory-dark);
+    border: 1px solid var(--ivory-dark);
+    margin-top: 48px;
+  }
+
+  .pos-cell {
+    background: var(--ivory);
+    padding: 40px;
+  }
+
+  .pos-cell.accent {
+    background: var(--black);
+  }
+
+  .pos-cell-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .pos-cell-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--black);
+    line-height: 1.4;
+  }
+
+  .pos-cell.accent .pos-cell-text {
+    color: var(--ivory);
+  }
+
+  /* ── PRINCIPLE CARDS ── */
+  .principles-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--ivory-dark);
+    border: 1px solid var(--ivory-dark);
+  }
+
+  .principle-card {
+    background: var(--ivory);
+    padding: 40px;
+    transition: background 0.2s;
+  }
+
+  .principle-card:hover {
+    background: var(--ivory-mid);
+  }
+
+  .principle-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--crimson);
+    opacity: 0.25;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .principle-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--black);
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+
+  .principle-body {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--warm-gray);
+    line-height: 1.8;
+  }
+
+  /* ── KEYWORD CLOUDS ── */
+  .keyword-section {
+    margin-top: 48px;
+  }
+
+  .keyword-group {
+    margin-bottom: 40px;
+  }
+
+  .keyword-group-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--crimson);
+    margin-bottom: 20px;
+    display: block;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--ivory-dark);
+  }
+
+  .keyword-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .keyword-tag {
+    padding: 8px 18px;
+    border: 1px solid;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .keyword-tag.myth {
+    border-color: var(--crimson-muted);
+    color: var(--crimson);
+    background: transparent;
+  }
+
+  .keyword-tag.emotion {
+    border-color: var(--black);
+    color: var(--black);
+    background: transparent;
+  }
+
+  .keyword-tag.fashion {
+    background: var(--black);
+    color: var(--ivory);
+    border-color: var(--black);
+  }
+
+  /* ── VOICE GRID ── */
+  .voice-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 48px;
+  }
+
+  .voice-block {
+    padding: 32px;
+    border: 1px solid;
+  }
+
+  .voice-block.should {
+    border-color: var(--crimson);
+    background: transparent;
+  }
+
+  .voice-block.never {
+    border-color: var(--ivory-dark);
+    background: var(--ivory-mid);
+  }
+
+  .voice-block-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .voice-block.should .voice-block-label { color: var(--crimson); }
+  .voice-block.never .voice-block-label { color: var(--warm-gray); }
+
+  .voice-item {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--ivory-dark);
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--charcoal);
+  }
+
+  .voice-item:last-child { border-bottom: none; }
+
+  .voice-icon {
+    font-size: 10px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .voice-block.should .voice-icon { color: var(--crimson); }
+  .voice-block.never .voice-icon { color: var(--warm-gray); text-decoration: line-through; opacity: 0.5; }
+
+  /* ── COLLECTION CARDS ── */
+  .collections-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    background: var(--black);
+  }
+
+  .collection-card {
+    background: var(--ivory);
+    padding: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .collection-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--crimson);
+  }
+
+  .collection-tag {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .collection-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--black);
+    margin-bottom: 16px;
+    line-height: 1.1;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .collection-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--warm-gray);
+    line-height: 1.8;
+    margin-bottom: 24px;
+  }
+
+  .collection-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .collection-meta-item {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: var(--black);
+    display: flex;
+    gap: 12px;
+  }
+
+  .collection-meta-item span:first-child {
+    color: var(--crimson-muted);
+    min-width: 80px;
+    text-transform: uppercase;
+    font-size: 9px;
+    letter-spacing: 2px;
+    padding-top: 1px;
+  }
+
+  /* ── AUDIENCE ── */
+  .audience-section {
+    background: var(--black);
+    margin: 0 -80px;
+    padding: 80px;
+    color: var(--ivory);
+  }
+
+  .audience-section .chapter-title {
+    color: var(--ivory);
+  }
+
+  .audience-section .chapter-num {
+    color: var(--crimson-muted);
+  }
+
+  .tribe-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 48px;
+  }
+
+  .tribe-item {
+    border-top: 1px solid var(--crimson-dark);
+    padding-top: 24px;
+  }
+
+  .tribe-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--crimson-muted);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .tribe-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tribe-tag {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--ivory-dark);
+    padding: 5px 12px;
+    border: 1px solid rgba(244, 238, 224, 0.15);
+  }
+
+  /* ── COMMANDMENTS ── */
+  .commandments-section {
+    background: var(--black);
+    padding: 100px 80px;
+    margin-top: 0;
+  }
+
+  .commandments-section .chapter-title {
+    color: var(--ivory);
+  }
+
+  .commandments-section .chapter-num {
+    color: var(--crimson-muted);
+  }
+
+  .commandment-list {
+    list-style: none;
+    margin-top: 48px;
+  }
+
+  .commandment-item {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 20px;
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(244, 238, 224, 0.08);
+    align-items: center;
+  }
+
+  .commandment-item:last-child {
+    border-bottom: none;
+  }
+
+  .commandment-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px;
+    font-weight: 300;
+    color: var(--crimson);
+    opacity: 0.4;
+    line-height: 1;
+  }
+
+  .commandment-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ivory);
+    line-height: 1.3;
+  }
+
+  .commandment-text.never {
+    color: rgba(244, 238, 224, 0.4);
+    text-decoration: line-through;
+    text-decoration-color: var(--crimson);
+  }
+
+  /* ── FINAL PAGE ── */
+  .closing-page {
+    background: var(--crimson-dark);
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 80px;
+    text-align: center;
+  }
+
+  .closing-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 300;
+    color: var(--ivory);
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 32px;
+  }
+
+  .closing-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(244, 238, 224, 0.6);
+    max-width: 560px;
+    line-height: 1.6;
+  }
+
+  .closing-divider {
+    width: 80px;
+    height: 1px;
+    background: var(--gold);
+    margin: 40px auto;
+    opacity: 0.5;
+  }
+
+  .closing-ethos {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.7;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--black);
+    padding: 32px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--ivory);
+    opacity: 0.4;
+  }
+
+  .footer-doc {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ivory);
+    opacity: 0.2;
+  }
+
+  /* ── EXPERIENCE BLOCK ── */
+  .experience-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: var(--ivory-dark);
+    border: 1px solid var(--ivory-dark);
+    margin-top: 48px;
+  }
+
+  .experience-cell {
+    background: var(--ivory);
+    padding: 32px 24px;
+    text-align: center;
+  }
+
+  .experience-icon {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--crimson);
+    opacity: 0.5;
+    display: block;
+    margin-bottom: 14px;
+    line-height: 1;
+  }
+
+  .experience-text {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--charcoal);
+    line-height: 1.6;
+    text-transform: lowercase;
+  }
+
+  /* ── BETWEEN WORLDS ── */
+  .tension-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+    align-items: center;
+  }
+
+  .tension-item {
+    text-align: center;
+    padding: 24px 16px;
+    background: var(--ivory-mid);
+    border: 1px solid var(--ivory-dark);
+  }
+
+  .tension-word {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--black);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .tension-bridge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .tension-connector {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--crimson);
+    opacity: 0.6;
+  }
+
+  .tension-connector-line {
+    width: 1px;
+    height: 20px;
+    background: var(--crimson);
+    opacity: 0.3;
+  }
+
+  /* ── PROCESS ── */
+  .process-flow {
+    display: flex;
+    gap: 0;
+    margin-top: 48px;
+    border: 1px solid var(--ivory-dark);
+    overflow: hidden;
+  }
+
+  .process-step {
+    flex: 1;
+    padding: 40px 28px;
+    background: var(--ivory);
+    border-right: 1px solid var(--ivory-dark);
+    position: relative;
+  }
+
+  .process-step:last-child {
+    border-right: none;
+    background: var(--crimson);
+  }
+
+  .process-step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--crimson);
+    opacity: 0.15;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .process-step:last-child .process-step-num {
+    color: var(--ivory);
+    opacity: 0.2;
+  }
+
+  .process-step-title {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--crimson);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .process-step:last-child .process-step-title {
+    color: var(--gold);
+  }
+
+  .process-step-body {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--warm-gray);
+    line-height: 1.7;
+  }
+
+  .process-step:last-child .process-step-body {
+    color: rgba(244, 238, 224, 0.8);
+  }
+
+  /* ── DIVIDER ── */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 0 80px;
+    margin: 0;
+    background: var(--ivory);
+  }
+
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: var(--ivory-dark);
+  }
+
+  .divider-symbol {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-style: italic;
+    color: var(--crimson);
+    opacity: 0.4;
+  }
+
+  /* ── HIGHLIGHT BOX ── */
+  .highlight-box {
+    background: var(--black);
+    padding: 48px 56px;
+    margin: 48px 0;
+  }
+
+  .highlight-box p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--ivory);
+    line-height: 1.5;
+    max-width: 600px;
+  }
+
+  .highlight-box p em {
+    color: var(--crimson-muted);
+    font-style: normal;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <span class="nav-brand">Kavadea</span>
+  <ul class="nav-links">
+    <li><a href="#essence">Essence</a></li>
+    <li><a href="#philosophy">Philosophy</a></li>
+    <li><a href="#language">Language</a></li>
+    <li><a href="#principles">Principles</a></li>
+    <li><a href="#collections">Collections</a></li>
+    <li><a href="#community">Community</a></li>
+  </ul>
+</nav>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-bg-text">K</div>
+  <div class="cover-top-rule"></div>
+  <span class="cover-label">Brand Codex &nbsp;·&nbsp; Rajasthan, India</span>
+  <h1 class="cover-title">Kavadea</h1>
+  <p class="cover-subtitle">We resurrect forgotten energies through fashion.</p>
+  <div class="cover-rule-h"></div>
+  <span class="cover-doc-type">Brand Identity &amp; Creative Direction Document &nbsp;·&nbsp; Confidential</span>
+  <div class="cover-scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</div>
+
+<!-- SECTION 1: ESSENCE -->
+<section id="essence">
+  <div class="chapter-header">
+    <span class="chapter-num">01 &nbsp;/&nbsp; Brand Essence</span>
+    <h2 class="chapter-title">What <em>Kavadea</em> Is</h2>
+    <div class="chapter-rule">
+      <div class="chapter-rule-line"></div>
+      <div class="chapter-rule-dot"></div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <p class="body-text">
+        Kavadea is a <strong>contemporary mythology house</strong> that transforms forgotten Indian stories, symbols, desires, and archetypes into wearable identities.
+        <br><br>
+        Inspired by the Kavad storytellers of Rajasthan, Kavadea continues the ancient tradition of storytelling — not through wooden boxes, but through fashion, visuals, symbols, rituals, and modern culture.
+        <br><br>
+        Kavadea does not preserve mythology. <strong>It resurrects it.</strong>
+      </p>
+
+      <div class="pull-quote">
+        <p>"Kavadea turns forgotten stories, symbols, and emotions into wearable identity."</p>
+        <cite>One-Line Brand Philosophy</cite>
+      </div>
+    </div>
+
+    <div>
+      <p class="body-text" style="margin-bottom: 32px;">Kavadea is <strong>not</strong>:</p>
+
+      <div style="display: flex; flex-direction: column; gap: 2px;">
+        <div style="padding: 18px 24px; background: var(--ivory-mid); border-left: 2px solid var(--ivory-dark);">
+          <span style="font-size: 9px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--warm-gray); text-decoration: line-through;">An Indian craft brand</span>
+        </div>
+        <div style="padding: 18px 24px; background: var(--ivory-mid); border-left: 2px solid var(--ivory-dark);">
+          <span style="font-size: 9px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--warm-gray); text-decoration: line-through;">A heritage NGO-fashion project</span>
+        </div>
+        <div style="padding: 18px 24px; background: var(--ivory-mid); border-left: 2px solid var(--ivory-dark);">
+          <span style="font-size: 9px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--warm-gray); text-decoration: line-through;">A mythology merchandise label</span>
+        </div>
+        <div style="padding: 18px 24px; background: var(--ivory-mid); border-left: 2px solid var(--ivory-dark);">
+          <span style="font-size: 9px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--warm-gray); text-decoration: line-through;">A streetwear brand using Indian graphics</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-cell dark">
+      <span class="stat-label">Foundation</span>
+      <span class="stat-value" style="font-size: 18px; font-family: 'Cormorant Garamond', serif; font-style: italic;">Wearable storytelling.</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-label">Emotional Experience</span>
+      <span class="stat-value" style="font-size: 18px; font-family: 'Cormorant Garamond', serif; font-style: italic;">Forgotten folklore, myths entering modern life.</span>
+    </div>
+    <div class="stat-cell dark">
+      <span class="stat-label">Visual Energy</span>
+      <span class="stat-value" style="font-size: 18px; font-family: 'Cormorant Garamond', serif; font-style: italic;">A god entering the human world.</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-label">Product Philosophy</span>
+      <span class="stat-value" style="font-size: 18px; font-family: 'Cormorant Garamond', serif; font-style: italic;">Identity through story.</span>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTO BREAK -->
+<div class="manifesto-block">
+  <span class="manifesto-label">Brand Manifesto</span>
+  <p class="manifesto-text">"Kavadea is the modern evolution of storytelling — transforming forgotten myths, desires, and archetypes into wearable identities for the contemporary world."</p>
+</div>
+
+<!-- SECTION 2: PHILOSOPHY -->
+<section id="philosophy" style="background: var(--ivory);">
+  <div class="chapter-header">
+    <span class="chapter-num">02 &nbsp;/&nbsp; Mission, Vision &amp; Experience</span>
+    <h2 class="chapter-title">Why We <em>Exist</em></h2>
+    <div class="chapter-rule">
+      <div class="chapter-rule-line"></div>
+      <div class="chapter-rule-dot"></div>
+    </div>
+  </div>
+
+  <div class="two-col" style="margin-bottom: 80px;">
+    <div>
+      <span style="font-size: 9px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--crimson); display: block; margin-bottom: 20px;">Mission</span>
+      <p class="body-text">
+        To transform forgotten stories and mythological energies into modern identity through fashion and visual culture.
+      </p>
+    </div>
+    <div>
+      <span style="font-size: 9px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--crimson); display: block; margin-bottom: 20px;">Vision</span>
+      <p class="body-text">
+        To become the world's most culturally influential mythology-inspired fashion house emerging from India. Not through nostalgia. <strong>Through reinvention.</strong>
+      </p>
+    </div>
+  </div>
+
+  <div style="margin-bottom: 48px;">
+    <span style="font-size: 9px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--crimson); display: block; margin-bottom: 28px;">Kavadea Feels Like</span>
+    <div class="experience-grid">
+      <div class="experience-cell">
+        <span class="experience-icon">∞</span>
+        <span class="experience-text">discovering forbidden lore</span>
+      </div>
+      <div class="experience-cell">
+        <span class="experience-icon">◈</span>
+        <span class="experience-text">entering a sacred ritual</span>
+      </div>
+      <div class="experience-cell">
+        <span class="experience-icon">⊕</span>
+        <span class="experience-text">wearing symbolic power</span>
+      </div>
+      <div class="experience-cell">
+        <span class="experience-icon">↑</span>
+        <span class="experience-text">awakening another identity</span>
+      </div>
+      <div class="experience-cell">
+        <span class="experience-icon">✦</span>
+        <span class="experience-text">a god entering the human world</span>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <span style="font-size: 9px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--crimson); display: block; margin-bottom: 28px;">The Kavadea World — Kavadea Exists Between</span>
+    <div class="tension-row">
+      <div class="tension-item">
+        <span class="tension-word">Ancient</span>
+        <div class="tension-bridge">
+          <div class="tension-connector-line"></div>
+          <span class="tension-connector">and</span>
+          <div class="tension-connector-line"></div>
+        </div>
+        <span class="tension-word">Futuristic</span>
+      </div>
+      <div class="tension-item">
+        <span class="tension-word">Sacred</span>
+        <div class="tension-bridge">
+          <div class="tension-connector-line"></div>
+          <span class="tension-connector">and</span>
+          <div class="tension-connector-line"></div>
+        </div>
+        <span class="tension-word">Rebellious</span>
+      </div>
+      <div class="tension-item">
+        <span class="tension-word">Mythology</span>
+        <div class="tension-bridge">
+          <div class="tension-connector-line"></div>
+          <span class="tension-connector">and</span>
+          <div class="tension-connector-line"></div>
+        </div>
+        <span class="tension-word">Street Culture</span>
+      </div>
+      <div class="tension-item">
+        <span class="tension-word">Ritual</span>
+        <div class="tension-bridge">
+          <div class="tension-connector-line"></div>
+          <span class="tension-connector">and</span>
+          <div class="tension-connector-line"></div>
+        </div>
+        <span class="tension-word">Modernity</span>
+      </div>
+      <div class="tension-item">
+        <span class="tension-word">God</span>
+        <div class="tension-bridge">
+          <div class="tension-connector-line"></div>
+          <span class="tension-connector">and</span>
+          <div class="tension-connector-line"></div>
+        </div>
+        <span class="tension-word">Human</span>
+      </div>
+    </div>
+    <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; color: var(--warm-gray); margin-top: 20px; text-align: center;">This tension is the brand.</p>
+  </div>
+
+  <div style="margin-top: 80px;">
+    <span style="font-size: 9px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--crimson); display: block; margin-bottom: 28px;">Design Formula — The Creative Process</span>
+    <div class="process-flow">
+      <div class="process-step">
+        <div class="process-step-num">01</div>
+        <span class="process-step-title">Core Emotion</span>
+        <p class="process-step-body">A collection theme, feeling, or psychological state that anchors everything.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">02</div>
+        <span class="process-step-title">Story</span>
+        <p class="process-step-body">Exploring a forgotten narrative — myth, memory, or cultural ritual built around it.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">03</div>
+        <span class="process-step-title">Human Truth</span>
+        <p class="process-step-body">An emotional or psychological reality that the collection represents.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">04</div>
+        <span class="process-step-title">Transformation</span>
+        <p class="process-step-body">The wearer experiences an identity shift — a becoming.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">05</div>
+        <span class="process-step-title">Visual Translation</span>
+        <p class="process-step-body">All of this becomes silhouette, texture, symbol, styling, campaign.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: BRAND LANGUAGE -->
+<section id="language" style="background: var(--ivory-mid);">
+  <div class="chapter-header">
+    <span class="chapter-num">03 &nbsp;/&nbsp; Brand Language</span>
+    <h2 class="chapter-title">The <em>Voice</em> of Kavadea</h2>
+    <div class="chapter-rule">
+      <div class="chapter-rule-line"></div>
+      <div class="chapter-rule-dot"></div>
+    </div>
+  </div>
+
+  <div class="keyword-section">
+    <div class="three-col">
+      <div class="keyword-group">
+        <span class="keyword-group-label">Mythological</span>
+        <div class="keyword-tags">
+          <span class="keyword-tag myth">Ritual</span>
+          <span class="keyword-tag myth">Sacred</span>
+          <span class="keyword-tag myth">Legend</span>
+          <span class="keyword-tag myth">Invocation</span>
+          <span class="keyword-tag myth">Portal</span>
+          <span class="keyword-tag myth">Symbol</span>
+          <span class="keyword-tag myth">Offering</span>
+          <span class="keyword-tag myth">Divine</span>
+          <span class="keyword-tag myth">Forgotten</span>
+          <span class="keyword-tag myth">Ancient Future</span>
+        </div>
+      </div>
+      <div class="keyword-group">
+        <span class="keyword-group-label">Emotional</span>
+        <div class="keyword-tags">
+          <span class="keyword-tag emotion">Desire</span>
+          <span class="keyword-tag emotion">Hunger</span>
+          <span class="keyword-tag emotion">Becoming</span>
+          <span class="keyword-tag emotion">Awakening</span>
+          <span class="keyword-tag emotion">Chaos</span>
+          <span class="keyword-tag emotion">Obsession</span>
+          <span class="keyword-tag emotion">Transformation</span>
+        </div>
+      </div>
+      <div class="keyword-group">
+        <span class="keyword-group-label">Fashion</span>
+        <div class="keyword-tags">
+          <span class="keyword-tag fashion">Wearable Mythology</span>
+          <span class="keyword-tag fashion">Engineered Identity</span>
+          <span class="keyword-tag fashion">Symbolic Garments</span>
+          <span class="keyword-tag fashion">Cultural Armor</span>
+          <span class="keyword-tag fashion">Ritual Wear</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="voice-grid">
+    <div class="voice-block should">
+      <span class="voice-block-label">Kavadea Sounds Like</span>
+      <div class="voice-item"><span class="voice-icon">→</span><span>Poetic — language that feels written, not typed</span></div>
+      <div class="voice-item"><span class="voice-icon">→</span><span>Cinematic — wide-frame, immersive, atmospheric</span></div>
+      <div class="voice-item"><span class="voice-icon">→</span><span>Symbolic — meaning layered beneath every word</span></div>
+      <div class="voice-item"><span class="voice-icon">→</span><span>Emotionally intense — it should be felt, not just read</span></div>
+      <div class="voice-item"><span class="voice-icon">→</span><span>Mysterious — never over-explain the magic</span></div>
+      <div class="voice-item"><span class="voice-icon">→</span><span>Philosophical but accessible — deep, not dense</span></div>
+    </div>
+    <div class="voice-block never">
+      <span class="voice-block-label">Kavadea Never Sounds Like</span>
+      <div class="voice-item"><span class="voice-icon">✕</span><span>Startup fashion brand copy</span></div>
+      <div class="voice-item"><span class="voice-icon">✕</span><span>Generic luxury imitation</span></div>
+      <div class="voice-item"><span class="voice-icon">✕</span><span>Spiritual guru preaching</span></div>
+      <div class="voice-item"><span class="voice-icon">✕</span><span>Ethnic craft NGO language</span></div>
+      <div class="voice-item"><span class="voice-icon">✕</span><span>Hypebeast slang overload</span></div>
+    </div>
+  </div>
+
+  <div class="highlight-box" style="margin-top: 60px;">
+    <p>"When someone encounters Kavadea, they should feel: <em>I don't fully understand this yet... but it feels ancient, powerful, and strangely personal.</em>"</p>
+  </div>
+</section>
+
+<!-- SECTION 4: PRINCIPLES -->
+<section id="principles" style="background: var(--ivory);">
+  <div class="chapter-header">
+    <span class="chapter-num">04 &nbsp;/&nbsp; Brand Principles</span>
+    <h2 class="chapter-title">The <em>Ten</em> Commandments of Craft</h2>
+    <div class="chapter-rule">
+      <div class="chapter-rule-line"></div>
+      <div class="chapter-rule-dot"></div>
+    </div>
+  </div>
+
+  <div class="principles-grid">
+    <div class="principle-card">
+      <div class="principle-number">01</div>
+      <h3 class="principle-title">Story Before Product</h3>
+      <p class="principle-body">Every piece begins with an emotion, a myth, a memory, a ritual, a contradiction, or a forgotten world. The garment is the final expression — not the starting point. If a product has no soul, it does not belong to Kavadea.</p>
+    </div>
+    <div class="principle-card">
+      <div class="principle-number">02</div>
+      <h3 class="principle-title">Culture Must Evolve, Not Be Preserved</h3>
+      <p class="principle-body">Kavadea does not recreate old India literally. It reimagines Indian culture into futuristic forms, modern silhouettes, and rebellious identities. Living culture, not frozen nostalgia.</p>
+    </div>
+    <div class="principle-card">
+      <div class="principle-number">03</div>
+      <h3 class="principle-title">Emotional Depth Over Trend Cycles</h3>
+      <p class="principle-body">Kavadea rejects shallow trend-chasing. The brand values timelessness, emotional permanence, symbolic resonance, and collectibility. A Kavadea piece should still feel meaningful years later.</p>
+    </div>
+    <div class="principle-card">
+      <div class="principle-number">04</div>
+      <h3 class="principle-title">Wearable Art, Not Commodity Fashion</h3>
+      <p class="principle-body">Garments should feel crafted, intentional, layered, collectible, and emotionally charged. Not mass-produced noise. Every detail — fabric, texture, fading, typography, embroidery, placement — should feel considered.</p>
+    </div>
+    <div class="principle-card">
+      <div class="principle-number">05</div>
+      <h3 class="principle-title">Rebellion With Meaning</h3>
+      <p class="principle-body">The rebellion is against cultural emptiness, fast fashion sameness, emotional numbness, and identity dilution. The brand stands for self-expression with soul.</p>
+    </div>
+    <div class="principle-card">
+      <div class="principle-number">06</div>
+      <h3 class="principle-title">Imperfection Is Sacred</h3>
+      <p class="principle-body">Human touch matters. Slight irregularities, rawness, fading, texture, aging, and handcrafted feeling are part of the emotional beauty. Soul over polish. Texture over sterility. Humanity over perfection.</p>
+    </div>
+    <div class="principle-card">
+      <div class="principle-number">07</div>
+      <h3 class="principle-title">India Is a Universe, Not a Stereotype</h3>
+      <p class="principle-body">Kavadea avoids cliché "ethnic" India, overused royal imagery, and tourist aesthetics. Instead: forgotten tribes, folk memory, oral storytelling, regional symbolism, and hidden philosophies. India as a deep civilizational universe.</p>
+    </div>
+    <div class="principle-card">
+      <div class="principle-number">08</div>
+      <h3 class="principle-title">Fashion Should Build Identity Tribes</h3>
+      <p class="principle-body">Kavadea is not just clothing — it is meant to attract dreamers, rebels, artists, outsiders, emotionally intense people, and culture seekers. The goal is not audience. The goal is tribe formation.</p>
+    </div>
+    <div class="principle-card">
+      <div class="principle-number">09</div>
+      <h3 class="principle-title">Slow Impact Over Loud Attention</h3>
+      <p class="principle-body">The brand should create obsession, emotional attachment, and deep resonance — not cheap virality. Kavadea prefers cult loyalty over mass approval, emotional depth over algorithmic noise.</p>
+    </div>
+    <div class="principle-card">
+      <div class="principle-number">10</div>
+      <h3 class="principle-title">Craftsmanship Is Philosophy</h3>
+      <p class="principle-body">Craft is not decoration. Handmade details symbolize memory, labor, time, cultural continuity, and emotional imprint. Craftsmanship at Kavadea is treated almost spiritually.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: COLLECTIONS -->
+<section id="collections" style="background: var(--ivory-mid); padding-bottom: 2px;">
+  <div class="chapter-header">
+    <span class="chapter-num">05 &nbsp;/&nbsp; Collections</span>
+    <h2 class="chapter-title">The <em>Worlds</em> We've Made</h2>
+    <div class="chapter-rule">
+      <div class="chapter-rule-line"></div>
+      <div class="chapter-rule-dot"></div>
+    </div>
+  </div>
+</section>
+
+<div class="collections-grid">
+  <div class="collection-card">
+    <span class="collection-tag">Collection I</span>
+    <h3 class="collection-name">Thread Narrative</h3>
+    <p class="collection-desc">Reimagines embroidery as a language of emotion. Crafted by hand with artisans from Rajasthan, every piece carries imperfect stitches, symbolic forms, and quiet narratives that reflect the beauty of being human. Thread becomes memory. Clothing becomes art.</p>
+    <div class="collection-meta">
+      <div class="collection-meta-item"><span>Pieces</span><span>9 T-Shirts</span></div>
+      <div class="collection-meta-item"><span>Technique</span><span>Hand embroidery only</span></div>
+    </div>
+  </div>
+  <div class="collection-card">
+    <span class="collection-tag">Collection II</span>
+    <h3 class="collection-name">Rural Renaissance</h3>
+    <p class="collection-desc">Reimagines India's traditional crafts through contemporary fashion. Featuring Kavad art, Madhubani, Dausa handloom, hand block printing, and tie-dye — the collection transforms rural craftsmanship into modern wearable expression, bridging heritage, individuality, and everyday streetwear.</p>
+    <div class="collection-meta">
+      <div class="collection-meta-item"><span>Pieces</span><span>10 shirts, 6 pants, 2 jackets, 1 thobe</span></div>
+      <div class="collection-meta-item"><span>Technique</span><span>Hand-painted, hand-woven, tie-dyeing</span></div>
+    </div>
+  </div>
+  <div class="collection-card">
+    <span class="collection-tag">Collection III</span>
+    <h3 class="collection-name">Object of Desire</h3>
+    <p class="collection-desc">A study of longing, temptation, obsession, and the things humans endlessly chase. Mythology-inspired collection exploring human longing, obsession, ambition, and emotional desire through wearable art. Ancient Indian narratives as modern expressions of identity.</p>
+    <div class="collection-meta">
+      <div class="collection-meta-item"><span>Pieces</span><span>10 T-shirts, 16 shirts, 5 pants, 5 jackets</span></div>
+      <div class="collection-meta-item"><span>Technique</span><span>Hand-painted, hand embroidery, some khadi</span></div>
+    </div>
+  </div>
+  <div class="collection-card">
+    <span class="collection-tag">Collection IV</span>
+    <h3 class="collection-name">Riot &amp; Rave</h3>
+    <p class="collection-desc">A post-apocalyptic collection inspired by war, mythology, rave culture, and emotional survival. Reconstructed garments, distressed textures, psychedelic fabrics, and mythological symbolism — exploring how humans search for joy, identity, and connection in a collapsing world.</p>
+    <div class="collection-meta">
+      <div class="collection-meta-item"><span>Pieces</span><span>20+ jackets, 8 pants, 4–6 T-shirts, 6 shirts</span></div>
+      <div class="collection-meta-item"><span>Technique</span><span>Embroidery, patchwork, appliqué, digital printing</span></div>
+    </div>
+  </div>
+  <div class="collection-card" style="grid-column: 1 / -1; background: var(--black);">
+    <span class="collection-tag" style="color: var(--gold);">Collection V &nbsp;·&nbsp; Forthcoming</span>
+    <h3 class="collection-name" style="color: var(--ivory);">One Life Mine</h3>
+    <p class="collection-desc" style="color: rgba(244,238,224,0.6);">Explores the emotional journey of leaving behind a life that no longer feels like your own. Inspired by Siddhartha leaving his kingdom and the wandering spirit of Buddhist monks and folklore — reimagining themes of escape, transformation, and freedom. From structured forms to fluid garments, reflecting how stepping into the unknown slowly leads a person back to themselves.</p>
+    <div class="collection-meta">
+      <div class="collection-meta-item" style="color: var(--ivory-dark);"><span style="color: var(--crimson-muted);">Pieces</span><span>T-shirts and shirts</span></div>
+      <div class="collection-meta-item" style="color: var(--ivory-dark);"><span style="color: var(--crimson-muted);">Technique</span><span>Hand-painted, embroidery, digital printing</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: COMMUNITY -->
+<div class="audience-section">
+  <div class="chapter-header">
+    <span class="chapter-num">06 &nbsp;/&nbsp; The Tribe</span>
+    <h2 class="chapter-title">Who Wears <em>Kavadea</em></h2>
+    <div class="chapter-rule">
+      <div class="chapter-rule-line"></div>
+      <div class="chapter-rule-dot"></div>
+    </div>
+  </div>
+
+  <p class="body-text" style="color: rgba(244,238,224,0.7); max-width: 640px;">Kavadea customers are not buyers. They are modern rebels, seekers, storytellers, creators, emotionally driven outsiders, and culturally curious individuals. They wear Kavadea to express identity beyond trends.</p>
+
+  <div class="tribe-grid">
+    <div class="tribe-item">
+      <span class="tribe-label">Markets</span>
+      <div class="tribe-tags">
+        <span class="tribe-tag">Bangalore</span>
+        <span class="tribe-tag">New Delhi</span>
+        <span class="tribe-tag">Mumbai</span>
+        <span class="tribe-tag">Jaipur</span>
+        <span class="tribe-tag">Chandigarh</span>
+        <span class="tribe-tag">Kolkata</span>
+        <span class="tribe-tag">NRI Diaspora</span>
+        <span class="tribe-tag">International</span>
+      </div>
+    </div>
+    <div class="tribe-item">
+      <span class="tribe-label">Who They Are</span>
+      <div class="tribe-tags">
+        <span class="tribe-tag">Designers</span>
+        <span class="tribe-tag">Creatives</span>
+        <span class="tribe-tag">Artists</span>
+        <span class="tribe-tag">Journalists</span>
+        <span class="tribe-tag">Actors / Singers</span>
+        <span class="tribe-tag">Business people</span>
+        <span class="tribe-tag">Young Professionals</span>
+        <span class="tribe-tag">Corporate</span>
+      </div>
+    </div>
+    <div class="tribe-item">
+      <span class="tribe-label">Who They Are Inside</span>
+      <div class="tribe-tags">
+        <span class="tribe-tag">Modern Rebels</span>
+        <span class="tribe-tag">Seekers</span>
+        <span class="tribe-tag">Storytellers</span>
+        <span class="tribe-tag">Outsiders</span>
+        <span class="tribe-tag">Dreamers</span>
+        <span class="tribe-tag">Culturally deep</span>
+        <span class="tribe-tag">Emotionally intense</span>
+        <span class="tribe-tag">Age 23–35</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 60px; border-top: 1px solid rgba(244,238,224,0.08); padding-top: 40px;">
+    <p style="font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 300; font-style: italic; color: rgba(244,238,224,0.5); max-width: 640px; line-height: 1.6;">
+      "Our customers did not treat a Kavadea piece like any other clothing. They gave it the most special place in the wardrobe — and they get excited on just the thought of wearing it to the right occasion."
+    </p>
+  </div>
+</div>
+
+<!-- SECTION 7: COMMANDMENTS -->
+<section id="community" class="commandments-section">
+  <div class="chapter-header">
+    <span class="chapter-num">07 &nbsp;/&nbsp; Brand Commandments</span>
+    <h2 class="chapter-title">The <em>Laws</em> of the House</h2>
+    <div class="chapter-rule">
+      <div class="chapter-rule-line"></div>
+      <div class="chapter-rule-dot"></div>
+    </div>
+  </div>
+
+  <ul class="commandment-list">
+    <li class="commandment-item">
+      <span class="commandment-num">I</span>
+      <span class="commandment-text">Never chase trends blindly. Lead with story, always.</span>
+    </li>
+    <li class="commandment-item">
+      <span class="commandment-num">II</span>
+      <span class="commandment-text">Never copy western luxury aesthetics directly.</span>
+    </li>
+    <li class="commandment-item">
+      <span class="commandment-num">III</span>
+      <span class="commandment-text">Never become culturally superficial.</span>
+    </li>
+    <li class="commandment-item">
+      <span class="commandment-num">IV</span>
+      <span class="commandment-text">Never over-explain the magic. Let it breathe.</span>
+    </li>
+    <li class="commandment-item">
+      <span class="commandment-num">V</span>
+      <span class="commandment-text">Never lose emotional depth for the sake of reach.</span>
+    </li>
+    <li class="commandment-item">
+      <span class="commandment-num">VI</span>
+      <span class="commandment-text">Never dilute storytelling for mass appeal.</span>
+    </li>
+    <li class="commandment-item">
+      <span class="commandment-num">VII</span>
+      <span class="commandment-text">Clothing must carry memory, meaning, identity, and emotional energy — not just aesthetics.</span>
+    </li>
+    <li class="commandment-item">
+      <span class="commandment-num">VIII</span>
+      <span class="commandment-text">Fashion must feel personal, symbolic, cinematic, spiritually charged, culturally alive, emotionally intimate. Not disposable.</span>
+    </li>
+  </ul>
+</section>
+
+<!-- CLOSING -->
+<div class="closing-page">
+  <span style="font-size: 9px; font-weight: 600; letter-spacing: 5px; text-transform: uppercase; color: rgba(244,238,224,0.4); margin-bottom: 48px; display: block;">The Ultimate Brand Feeling</span>
+  <h2 class="closing-title">Wear Your Story.</h2>
+  <div class="closing-divider"></div>
+  <p class="closing-sub">"Become part of a larger one."</p>
+  <div style="height: 40px;"></div>
+  <span class="closing-ethos">Ancient storytellers used Kavad boxes. Kavadea uses fashion.</span>
+</div>
+
+<footer>
+  <span class="footer-brand">Kavadea</span>
+  <span class="footer-doc">Brand Codex &nbsp;·&nbsp; Internal Document &nbsp;·&nbsp; Jaipur, Rajasthan</span>
+</footer>
+
+</body>
+</html>
