@@ -1,0 +1,700 @@
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); }
+  .wrap { padding: 1.5rem 0; }
+  .section { margin-bottom: 2.5rem; }
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+  }
+  .section-title {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    margin-bottom: 0.35rem;
+  }
+  .section-sub {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    margin-bottom: 1.25rem;
+    line-height: 1.6;
+  }
+
+  /* NAV TABS */
+  .nav { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 2rem; }
+  .nav-btn {
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 0.5px solid var(--color-border-secondary);
+    background: var(--color-background-primary);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .nav-btn:hover { background: var(--color-background-secondary); color: var(--color-text-primary); }
+  .nav-btn.active { background: #26215C; color: #EEEDFE; border-color: #26215C; }
+
+  /* CARDS GRID */
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+  .card {
+    background: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    padding: 1rem 1.1rem;
+  }
+  .card-icon { font-size: 20px; color: #534AB7; margin-bottom: 8px; }
+  .card-title { font-size: 14px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
+  .card-body { font-size: 13px; color: var(--color-text-secondary); line-height: 1.55; }
+
+  /* PILLAR CARDS */
+  .pillar { border-left: 3px solid; padding: 0.9rem 1rem; border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0; background: var(--color-background-secondary); margin-bottom: 10px; }
+  .pillar-name { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+  .pillar-desc { font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; }
+  .pillar-tag { font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 99px; display: inline-block; margin-top: 6px; }
+
+  /* POST ROW */
+  .post-row { display: grid; grid-template-columns: 90px 1fr; gap: 12px; align-items: start; margin-bottom: 12px; }
+  .post-type {
+    font-size: 11px; font-weight: 500; text-align: center; padding: 6px 4px;
+    border-radius: var(--border-radius-md); line-height: 1.3;
+  }
+  .post-detail .post-heading { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 2px; }
+  .post-detail .post-sub { font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; }
+
+  /* SCHEDULE TABLE */
+  .sched { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .sched th { text-align: left; font-weight: 500; color: var(--color-text-secondary); padding: 6px 10px; border-bottom: 0.5px solid var(--color-border-tertiary); font-size: 12px; }
+  .sched td { padding: 9px 10px; border-bottom: 0.5px solid var(--color-border-tertiary); color: var(--color-text-primary); vertical-align: top; }
+  .sched tr:last-child td { border-bottom: none; }
+
+  /* BIO BLOCK */
+  .bio-box {
+    background: var(--color-background-secondary);
+    border-radius: var(--border-radius-lg);
+    border: 0.5px solid var(--color-border-tertiary);
+    padding: 1.25rem;
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--color-text-primary);
+    font-family: var(--font-mono);
+    white-space: pre-wrap;
+  }
+
+  /* HIGHLIGHT CHIPS */
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    border: 0.5px solid var(--color-border-secondary);
+    border-radius: 999px;
+    padding: 5px 14px;
+    font-size: 13px;
+    color: var(--color-text-primary);
+    background: var(--color-background-primary);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .chip i { font-size: 14px; color: #534AB7; }
+
+  /* KPI */
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
+  .kpi { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 1rem; text-align: center; }
+  .kpi-num { font-size: 22px; font-weight: 500; color: #534AB7; }
+  .kpi-label { font-size: 12px; color: var(--color-text-secondary); margin-top: 2px; }
+
+  .hidden { display: none; }
+  .tab-content { }
+
+  .caption-box { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 0.9rem 1rem; margin-bottom: 10px; font-size: 13px; line-height: 1.65; color: var(--color-text-primary); border-left: 3px solid #534AB7; }
+  .caption-label { font-size: 11px; font-weight: 500; color: #534AB7; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  .ad-card { border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem 1.1rem; margin-bottom: 10px; background: var(--color-background-primary); }
+  .ad-title { font-size: 13px; font-weight: 500; margin-bottom: 3px; color: var(--color-text-primary); }
+  .ad-meta { font-size: 12px; color: var(--color-text-secondary); margin-bottom: 6px; }
+  .ad-body { font-size: 13px; color: var(--color-text-secondary); line-height: 1.55; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 99px; margin-right: 4px; }
+</style>
+
+<div class="wrap">
+  <h2 class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden">Kavadea Instagram Marketing Strategy</h2>
+
+  <div style="margin-bottom: 1.5rem;">
+    <div style="font-size: 22px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px;">◈ Kavadea — Instagram Strategy</div>
+    <div style="font-size: 14px; color: var(--color-text-secondary);">A complete mythological playbook for the world's most visual platform</div>
+  </div>
+
+  <nav class="nav" aria-label="Strategy sections">
+    <button class="nav-btn active" onclick="showTab('overview')">Overview</button>
+    <button class="nav-btn" onclick="showTab('content')">Content pillars</button>
+    <button class="nav-btn" onclick="showTab('posts')">Posts & reels</button>
+    <button class="nav-btn" onclick="showTab('stories')">Stories</button>
+    <button class="nav-btn" onclick="showTab('ads')">Ads</button>
+    <button class="nav-btn" onclick="showTab('bio')">Bio & highlights</button>
+    <button class="nav-btn" onclick="showTab('repost')">Reposts & collab</button>
+    <button class="nav-btn" onclick="showTab('schedule')">Schedule</button>
+    <button class="nav-btn" onclick="showTab('kpis')">KPIs</button>
+  </nav>
+
+  <!-- OVERVIEW -->
+  <div id="tab-overview" class="tab-content">
+    <div class="section">
+      <div class="section-label">01 · philosophy</div>
+      <div class="section-title">Instagram as a Kavad Box</div>
+      <div class="section-sub">Each scroll opens another panel. Each post reveals another forgotten world. Instagram is not a sales channel — it is Kavadea's living mythology altar. Every pixel must feel ancient and futuristic simultaneously.</div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon"><i class="ti ti-flame" aria-hidden="true"></i></div>
+          <div class="card-title">Tone</div>
+          <div class="card-body">Poetic. Cinematic. Mysterious. Never startup-y, never generic luxury, never spiritual-guru vibes.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon"><i class="ti ti-eye" aria-hidden="true"></i></div>
+          <div class="card-title">Aesthetic</div>
+          <div class="card-body">Dark rituals meet modern street. Raw texture. Imperfect craft. The tension between ancient and futuristic.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon"><i class="ti ti-users" aria-hidden="true"></i></div>
+          <div class="card-title">Audience</div>
+          <div class="card-body">23–35, India + NRI globally. Designers, creatives, artists, rebels, seekers. People who wear identity, not just clothing.</div>
+        </div>
+        <div class="card">
+          <div class="card-icon"><i class="ti ti-target" aria-hidden="true"></i></div>
+          <div class="card-title">Goal</div>
+          <div class="card-body">Tribe formation, not follower count. Cult loyalty over mass approval. Obsession over cheap virality.</div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-label">02 · posting rhythm</div>
+      <div class="section-title">Frequency</div>
+      <div class="section-sub">Kavadea must be consistent but never noisy. Quality of myth over quantity of posts.</div>
+      <div class="cards">
+        <div class="card"><div class="card-title">Feed Posts</div><div class="card-body">4–5 per week. Every image must earn its place in the altar.</div></div>
+        <div class="card"><div class="card-title">Reels</div><div class="card-body">2–3 per week. Cinematic, atmospheric. Not trend-chasing.</div></div>
+        <div class="card"><div class="card-title">Stories</div><div class="card-body">Daily. 5–8 frames. The living ritual space.</div></div>
+        <div class="card"><div class="card-title">Ads</div><div class="card-body">2–3 active campaigns. Always tied to a collection or drop.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT PILLARS -->
+  <div id="tab-content" class="tab-content hidden">
+    <div class="section">
+      <div class="section-label">03 · content pillars</div>
+      <div class="section-title">Six pillars, one universe</div>
+      <div class="section-sub">Every piece of content belongs to one of these six mythological pillars. Never post anything that doesn't fit.</div>
+    </div>
+
+    <div class="pillar" style="border-color: #534AB7;">
+      <div class="pillar-name" style="color: #534AB7;">◈ The Mythology Drop</div>
+      <div class="pillar-desc">Introduce forgotten Indian stories, symbols, rituals, and archetypes. Not history lessons — emotional transmissions. "This symbol was used by tribes in Rajasthan to ward off spiritual hunger. We stitched it into 9 shirts."</div>
+      <span class="pillar-tag" style="background: #EEEDFE; color: #3C3489;">40% of feed</span>
+    </div>
+
+    <div class="pillar" style="border-color: #0F6E56;">
+      <div class="pillar-name" style="color: #0F6E56;">◈ Product as Portal</div>
+      <div class="pillar-desc">Show the garment as a ritual object, not a product. No flat-lays. No white background e-commerce shots. The piece must feel like it carries weight — story, emotion, memory. Show it in motion, in light, on skin, in context.</div>
+      <span class="pillar-tag" style="background: #E1F5EE; color: #085041;">25% of feed</span>
+    </div>
+
+    <div class="pillar" style="border-color: #D85A30;">
+      <div class="pillar-name" style="color: #D85A30;">◈ The Making (Process)</div>
+      <div class="pillar-desc">Artisan hands. Raw embroidery in progress. Kavad box art being painted. The imperfect stitch. This is proof of soul. Kavadea's craftsmanship is philosophy — show it as a ritual act, not a factory floor.</div>
+      <span class="pillar-tag" style="background: #FAECE7; color: #712B13;">15% of feed</span>
+    </div>
+
+    <div class="pillar" style="border-color: #B06B00;">
+      <div class="pillar-name" style="color: #BA7517;">◈ The Tribe</div>
+      <div class="pillar-desc">Real people wearing Kavadea in their world. Not models. Creatives, artists, rebels, seekers. Shot documentary-style. Tag their identity — designer, musician, architect. Build the community altar publicly.</div>
+      <span class="pillar-tag" style="background: #FAEEDA; color: #633806;">10% of feed</span>
+    </div>
+
+    <div class="pillar" style="border-color: #D4537E;">
+      <div class="pillar-name" style="color: #993556;">◈ Desire & Obsession</div>
+      <div class="pillar-desc">Abstract, atmospheric, psychological content. A poem about longing. A reel of a symbol dissolving into smoke. A quote from a forgotten oral tradition. Content that makes people feel something they can't name — and come back for more.</div>
+      <span class="pillar-tag" style="background: #FBEAF0; color: #72243E;">7% of feed</span>
+    </div>
+
+    <div class="pillar" style="border-color: #378ADD;">
+      <div class="pillar-name" style="color: #185FA5;">◈ Behind the Codex</div>
+      <div class="pillar-desc">The mind behind the mythology. Why a collection was born. What emotion demanded expression. The research into forgotten lore. Show the brand's intellectual depth and creative obsession without being academic.</div>
+      <span class="pillar-tag" style="background: #E6F1FB; color: #0C447C;">3% of feed</span>
+    </div>
+  </div>
+
+  <!-- POSTS & REELS -->
+  <div id="tab-posts" class="tab-content hidden">
+    <div class="section">
+      <div class="section-label">04 · feed posts</div>
+      <div class="section-title">What to post</div>
+      <div class="section-sub">Every post is a panel opening in the Kavad box. Visual rules: dark moody palettes, raw textures, film grain, natural light or ritual candlelight. Never bright commercial photography.</div>
+    </div>
+
+    <div class="post-row">
+      <div class="post-type" style="background:#EEEDFE; color:#3C3489;">Collection editorial</div>
+      <div class="post-detail">
+        <div class="post-heading">Multi-image editorial shoot per collection</div>
+        <div class="post-sub">6–10 slide carousel. Each slide is a panel of the story. Start with the emotion, end with the piece. Caption reads like a myth, not a product description. Example: "Thread Narratives — 9 shirts. 9 memories. Each stitch placed by a hand that has stitched for 30 years."</div>
+      </div>
+    </div>
+
+    <div class="post-row">
+      <div class="post-type" style="background:#E1F5EE; color:#085041;">Symbol post</div>
+      <div class="post-detail">
+        <div class="post-heading">One symbol. One story. One garment.</div>
+        <div class="post-sub">Single image of a specific motif/symbol used in a piece, with a caption explaining its forgotten origin. Drives deep cultural credibility. Example: Image of a hand-painted kavad motif — caption reveals the story the Kavad storyteller would have told with that panel.</div>
+      </div>
+    </div>
+
+    <div class="post-row">
+      <div class="post-type" style="background:#FAECE7; color:#712B13;">Artisan portrait</div>
+      <div class="post-detail">
+        <div class="post-heading">Portrait of the maker, story of the hand</div>
+        <div class="post-sub">Close portrait of the artisan with their work. Name, village, craft, years of practice. "Ramji. 43 years. Jaisalmer. His hands remember patterns his grandfather drew in sand." Builds emotional depth, not craft-brand nostalgia.</div>
+      </div>
+    </div>
+
+    <div class="post-row">
+      <div class="post-type" style="background:#FBEAF0; color:#72243E;">Desire quote</div>
+      <div class="post-detail">
+        <div class="post-heading">Typographic mythology card</div>
+        <div class="post-sub">A powerful line from brand language or from forgotten oral lore, rendered in Kavadea's typographic style. Dark background, raw texture, single poetic line. "The symbol you don't understand — that one is yours." Shareable, re-saveable.</div>
+      </div>
+    </div>
+
+    <div class="post-row">
+      <div class="post-type" style="background:#FAEEDA; color:#633806;">Tribe feature</div>
+      <div class="post-detail">
+        <div class="post-heading">Community altar: who wears Kavadea</div>
+        <div class="post-sub">Photo of a real buyer/community member in their world. Shot in their space — studio, street, studio rooftop. Their words about why they chose the piece. "Mihir. Architect. Mumbai. He wore Object of Desire to a site he was building. Said it felt like armour."</div>
+      </div>
+    </div>
+
+    <div class="section" style="margin-top: 2rem;">
+      <div class="section-label">05 · reels</div>
+      <div class="section-title">Cinematic, not viral</div>
+      <div class="section-sub">Reels are rituals, not trends. Never use trending audio just for reach. Use original sounds, Sanskrit chants, folk instruments, ambient soundscapes, or silence. Every reel should feel like a short film fragment.</div>
+    </div>
+
+    <div class="post-row">
+      <div class="post-type" style="background:#EEEDFE; color:#3C3489;">Ritual unboxing</div>
+      <div class="post-detail">
+        <div class="post-heading">The unboxing is a ritual, not a haul</div>
+        <div class="post-sub">Slow, atmospheric unboxing. Hands opening the package. The tissue. The piece emerging. Folk music or silence. Final shot: the piece laid out like a sacred object. 30–45 seconds. No voiceover. Text overlays only.</div>
+      </div>
+    </div>
+
+    <div class="post-row">
+      <div class="post-type" style="background:#E1F5EE; color:#085041;">Making process</div>
+      <div class="post-detail">
+        <div class="post-heading">From feeling to fabric — the creation reel</div>
+        <div class="post-sub">Timelapse + slow motion hybrid. Raw material → artisan hand → finished garment. End on the garment being worn in a sacred or charged environment. "This piece took 18 days. One emotion. One myth. One pair of hands."</div>
+      </div>
+    </div>
+
+    <div class="post-row">
+      <div class="post-type" style="background:#FAECE7; color:#712B13;">Mythology short</div>
+      <div class="post-detail">
+        <div class="post-heading">60-second forgotten story</div>
+        <div class="post-sub">Visual poetry reel telling a forgotten Indian myth/legend/ritual in 60 seconds. Text overlaid on dark visuals, folk audio. End with the garment that was born from that story. Not educational — emotional. Like a campfire story.</div>
+      </div>
+    </div>
+
+    <div class="post-row">
+      <div class="post-type" style="background:#FAEEDA; color:#633806;">Lookbook</div>
+      <div class="post-detail">
+        <div class="post-heading">Collection lookbook reel</div>
+        <div class="post-sub">15–30 second atmospheric film of a collection. Shot on location — ruins, ghats, forests, rooftops. No model smiling at camera. Models in character, in ritual, in motion. Kavadea world, not fashion show.</div>
+      </div>
+    </div>
+
+    <div class="section" style="margin-top: 2rem;">
+      <div class="section-label">06 · captions</div>
+      <div class="section-title">Caption language</div>
+    </div>
+    <div class="caption-box">
+      <div class="caption-label">Example — Thread Narratives drop</div>
+      Some stitches were never meant to be perfect.<br>
+      They were meant to be remembered.<br><br>
+      Thread Narratives — 9 shirts. Each one carrying a memory that does not belong to us yet.<br><br>
+      Hand embroidered by artisans in Rajasthan who have stitched longer than most of us have lived.<br><br>
+      The imperfect stitch is the point. The soul is in the deviation.<br><br>
+      ◈ Link in bio.
+    </div>
+    <div class="caption-box">
+      <div class="caption-label">Example — Symbol post</div>
+      This symbol appeared in Kavad storytelling boxes across Mewar.<br>
+      It represented the moment before transformation — the threshold.<br><br>
+      We placed it at the back of this shirt. Between the shoulder blades.<br>
+      Because that is where your wings would go, if you let them.
+    </div>
+  </div>
+
+  <!-- STORIES -->
+  <div id="tab-stories" class="tab-content hidden">
+    <div class="section">
+      <div class="section-label">07 · stories</div>
+      <div class="section-title">Daily rituals in 24 hours</div>
+      <div class="section-sub">Stories are where the brand breathes in real time. They should feel intimate, exploratory, and alive — not polished advertising. Think: behind the veil.</div>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon"><i class="ti ti-sparkles" aria-hidden="true"></i></div>
+        <div class="card-title">Morning ritual</div>
+        <div class="card-body">One mythology fact, symbol, or ancient story. 3–4 text slides. Poetic. No hashtags. "Today's forgotten energy:" format builds habit and return.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="ti ti-camera" aria-hidden="true"></i></div>
+        <div class="card-title">Raw making</div>
+        <div class="card-body">Behind-the-scenes of production. Raw, unfiltered. Artisan at work. Fabric arriving. A mistake that became a feature. The texture of craft.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="ti ti-message-circle" aria-hidden="true"></i></div>
+        <div class="card-title">Question the tribe</div>
+        <div class="card-body">Poll: "Which forgotten emotion do you wear: longing or obsession?" Slider: "How deep is your mythology knowledge?" This feeds the tribe's identity in public.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="ti ti-clock" aria-hidden="true"></i></div>
+        <div class="card-title">Drop countdown</div>
+        <div class="card-body">3-day ritual countdown before any new piece drops. Each day: one teaser frame — a symbol, a material, a shadow of the garment. No price. No product shot. Just anticipation.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="ti ti-heart" aria-hidden="true"></i></div>
+        <div class="card-title">Tribe reposts</div>
+        <div class="card-body">Reshare customer stories with captions that add mythological context to what they posted. Not a generic repost — a ritual elevation. "Arjun wears Object of Desire to every pitch. He calls it his armour. We believe him."</div>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="ti ti-map-pin" aria-hidden="true"></i></div>
+        <div class="card-title">Sacred locations</div>
+        <div class="card-body">Visit ruins, crafts markets, folk festivals, art villages. Document raw. "We went to the source." This is brand travel content with mythological purpose, not tourism.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="ti ti-book" aria-hidden="true"></i></div>
+        <div class="card-title">Story of the week</div>
+        <div class="card-body">Every Friday: a longer mythology story in 8–10 slides. Rituals, folk heroes, forgotten cults, regional oral traditions. Builds the most loyal, returning audience.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="ti ti-link" aria-hidden="true"></i></div>
+        <div class="card-title">Link stories</div>
+        <div class="card-body">When driving to shop or a new drop, the story must earn the swipe-up. Don't just show the product — tell one more layer of the story, then reveal the link.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADS -->
+  <div id="tab-ads" class="tab-content hidden">
+    <div class="section">
+      <div class="section-label">08 · paid ads</div>
+      <div class="section-title">Ads that feel like mythology, not marketing</div>
+      <div class="section-sub">Kavadea ads must never look like ads. They must feel like a fragment of a larger world the viewer is only now discovering. Never use "Buy Now" as primary copy. Use "Enter" / "Claim yours" / "The drop is live".</div>
+    </div>
+
+    <div class="ad-card">
+      <div class="ad-title">◈ Collection launch — awareness reel ad</div>
+      <div class="ad-meta">
+        <span class="badge" style="background:#EEEDFE; color:#3C3489;">Awareness</span>
+        <span class="badge" style="background:#E1F5EE; color:#085041;">Reels</span>
+        <span class="badge" style="background:#FAEEDA; color:#633806;">Interest targeting</span>
+      </div>
+      <div class="ad-body">
+        <strong style="font-weight:500">Objective:</strong> Reach new audiences who feel culturally disconnected from mainstream fashion.<br>
+        <strong style="font-weight:500">Format:</strong> 15–30 sec cinematic reel. No talking head. Pure visuals + text overlay + folk/ambient audio.<br>
+        <strong style="font-weight:500">Hook:</strong> "Some stories were never meant to be remembered. We wore them anyway."<br>
+        <strong style="font-weight:500">CTA:</strong> "Enter the collection →"<br>
+        <strong style="font-weight:500">Targeting:</strong> 23–38, Bangalore/Mumbai/Delhi/Jaipur/Chandigarh + NRI diaspora in UK, US, UAE. Interests: Indian art, contemporary fashion, mythology, independent design, Auralee, Our Legacy.
+      </div>
+    </div>
+
+    <div class="ad-card">
+      <div class="ad-title">◈ Desire campaign — retargeting story ad</div>
+      <div class="ad-meta">
+        <span class="badge" style="background:#FBEAF0; color:#72243E;">Retargeting</span>
+        <span class="badge" style="background:#E6F1FB; color:#0C447C;">Stories</span>
+        <span class="badge" style="background:#FAECE7; color:#712B13;">Warm audience</span>
+      </div>
+      <div class="ad-body">
+        <strong style="font-weight:500">Objective:</strong> Convert profile visitors and reel watchers who haven't purchased.<br>
+        <strong style="font-weight:500">Format:</strong> Full-screen story. 3 slides. Slow. Text-heavy.<br>
+        <strong style="font-weight:500">Slide 1:</strong> "You came back."<br>
+        <strong style="font-weight:500">Slide 2:</strong> "Something here felt like yours. You weren't wrong."<br>
+        <strong style="font-weight:500">Slide 3:</strong> Product shot with "Claim it before someone else does."<br>
+        <strong style="font-weight:500">Targeting:</strong> Profile visitors, reel viewers (75%+), Instagram engagers — last 90 days.
+      </div>
+    </div>
+
+    <div class="ad-card">
+      <div class="ad-title">◈ Artisan story — brand equity carousel ad</div>
+      <div class="ad-meta">
+        <span class="badge" style="background:#EEEDFE; color:#3C3489;">Brand equity</span>
+        <span class="badge" style="background:#E1F5EE; color:#085041;">Feed carousel</span>
+        <span class="badge" style="background:#FAEEDA; color:#633806;">Cold + warm</span>
+      </div>
+      <div class="ad-body">
+        <strong style="font-weight:500">Objective:</strong> Build emotional brand depth, not just product awareness. Reduce cost-per-engagement.<br>
+        <strong style="font-weight:500">Format:</strong> 5-slide carousel. Artisan portrait + story + garment reveal.<br>
+        <strong style="font-weight:500">Copy:</strong> "18 days. One forgotten story. One pair of hands. One shirt that will outlive the trend cycle."<br>
+        <strong style="font-weight:500">CTA:</strong> "Meet the maker →"<br>
+        <strong style="font-weight:500">Note:</strong> This ad builds trust more than it drives immediate sales — run it alongside conversion campaigns.
+      </div>
+    </div>
+
+    <div class="ad-card">
+      <div class="ad-title">◈ Limited drop — urgency ad</div>
+      <div class="ad-meta">
+        <span class="badge" style="background:#FBEAF0; color:#72243E;">Conversion</span>
+        <span class="badge" style="background:#FAECE7; color:#712B13;">Feed + stories</span>
+        <span class="badge" style="background:#FAEEDA; color:#633806;">Warm audience</span>
+      </div>
+      <div class="ad-body">
+        <strong style="font-weight:500">Objective:</strong> Drive sales for limited-edition drops (Thread Narratives — 9 shirts only).<br>
+        <strong style="font-weight:500">Copy:</strong> "9 shirts. 9 stories. When they're gone, they're gone forever."<br>
+        <strong style="font-weight:500">Visual:</strong> Flat lay of all 9 pieces arranged like offerings on an altar.<br>
+        <strong style="font-weight:500">CTA:</strong> "Enter the drop"<br>
+        <strong style="font-weight:500">Urgency lever:</strong> Scarcity is built into Kavadea's DNA — limited runs, hand-made quantities. Use this honestly, never artificially.
+      </div>
+    </div>
+  </div>
+
+  <!-- BIO & HIGHLIGHTS -->
+  <div id="tab-bio" class="tab-content hidden">
+    <div class="section">
+      <div class="section-label">09 · profile</div>
+      <div class="section-title">The profile is the altar entrance</div>
+      <div class="section-sub">Someone visits @kavadea for the first time — in 3 seconds they must feel: "I don't fully understand this yet… but it feels ancient, powerful, and strangely personal."</div>
+    </div>
+
+    <div style="margin-bottom: 1.5rem;">
+      <div style="font-size: 13px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 8px;">Instagram bio</div>
+      <div class="bio-box">◈ KAVADEA
+Wearable Mythology. Living Culture.
+Forgotten Energies.
+
+Mythology house from India.
+Ancient stories. Modern identity. Handcrafted.
+
+↓ Enter the world</div>
+    </div>
+
+    <div style="margin-bottom: 1.5rem;">
+      <div style="font-size: 13px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 8px;">Profile picture</div>
+      <div class="card" style="max-width: 400px;">
+        <div class="card-body">The ◈ symbol from the brand codex, rendered in gold/copper on deep black or dark indigo. Clean, symbolic, not a wordmark. Should feel like a seal or a glyph — ancient but designed.</div>
+      </div>
+    </div>
+
+    <div class="section" style="margin-top: 2rem;">
+      <div class="section-label">10 · highlights</div>
+      <div class="section-title">Story highlights</div>
+      <div class="section-sub">Each highlight is a chamber in the Kavad box. Custom illustrated covers — dark backgrounds, single symbol or icon per highlight.</div>
+    </div>
+
+    <div class="chips">
+      <div class="chip"><i class="ti ti-book" aria-hidden="true"></i> The Mythology</div>
+      <div class="chip"><i class="ti ti-shirt" aria-hidden="true"></i> Collections</div>
+      <div class="chip"><i class="ti ti-hand-move" aria-hidden="true"></i> The Making</div>
+      <div class="chip"><i class="ti ti-users" aria-hidden="true"></i> The Tribe</div>
+      <div class="chip"><i class="ti ti-map-2" aria-hidden="true"></i> Sacred Places</div>
+      <div class="chip"><i class="ti ti-star" aria-hidden="true"></i> Drop Archive</div>
+      <div class="chip"><i class="ti ti-package" aria-hidden="true"></i> How to Order</div>
+      <div class="chip"><i class="ti ti-quote" aria-hidden="true"></i> The Codex</div>
+    </div>
+
+    <div style="margin-top: 1.5rem;">
+      <div style="font-size: 13px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 8px;">What goes in each highlight</div>
+      <table class="sched">
+        <thead><tr><th>Highlight</th><th>Content</th></tr></thead>
+        <tbody>
+          <tr><td>The Mythology</td><td>Friday story series, symbol explainers, forgotten lore fragments</td></tr>
+          <tr><td>Collections</td><td>Each collection's story, pieces, behind-the-scenes process</td></tr>
+          <tr><td>The Making</td><td>Artisan portraits, craft process reels, material stories</td></tr>
+          <tr><td>The Tribe</td><td>Community wearing Kavadea — real people, real contexts</td></tr>
+          <tr><td>Sacred Places</td><td>Location visits — Rajasthan craft villages, folk festivals, ruins</td></tr>
+          <tr><td>Drop Archive</td><td>Past sold-out drops — creates desire, documents scarcity</td></tr>
+          <tr><td>How to Order</td><td>Simple: DM process, sizing, shipping, care ritual</td></tr>
+          <tr><td>The Codex</td><td>Brand philosophy slides — "what Kavadea is not" type content</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- REPOST & COLLAB -->
+  <div id="tab-repost" class="tab-content hidden">
+    <div class="section">
+      <div class="section-label">11 · repost & collaboration</div>
+      <div class="section-title">Who gets a seat at the altar</div>
+      <div class="section-sub">Kavadea does not repost randomly. Every repost is a curation act — a statement of what the brand's world contains. This is tribe-building, not engagement farming.</div>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon"><i class="ti ti-user-check" aria-hidden="true"></i></div>
+        <div class="card-title">Community reposts</div>
+        <div class="card-body">Customers who post organically wearing Kavadea. Reshare to Stories, never to feed unless the image quality and vibe match brand aesthetic. Add mythology context to every reshare caption.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="ti ti-palette" aria-hidden="true"></i></div>
+        <div class="card-title">Artist collaborations</div>
+        <div class="card-body">Partner with illustrators, muralists, sculptors, and folk artists who work with Indian mythology or symbolism. Their process + Kavadea piece = cross-posted content. Not influencer. Creator-as-equal.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="ti ti-building" aria-hidden="true"></i></div>
+        <div class="card-title">Culture institutions</div>
+        <div class="card-body">Tag and acknowledge folk art festivals, craft fairs, independent Indian design platforms (like Qyuki, Jaypore community, NIFT collectives). Be part of a cultural ecosystem.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="ti ti-camera" aria-hidden="true"></i></div>
+        <div class="card-title">Photographer collabs</div>
+        <div class="card-body">Commission photographers who shoot documentary/editorial — not fashion photographers who use ring lights and white walls. Shoot in situ: Jodhpur streets, Banaras ghats, Bengaluru rooftops.</div>
+      </div>
+    </div>
+
+    <div class="section" style="margin-top: 2rem;">
+      <div class="section-label">12 · who NOT to collaborate with</div>
+    </div>
+    <div style="background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 1rem 1.1rem; border-left: 3px solid #E24B4A;">
+      <div style="font-size: 13px; color: var(--color-text-primary); line-height: 1.8;">
+        ✗ Lifestyle influencers with no cultural depth<br>
+        ✗ Fashion haul creators / "try on" formats<br>
+        ✗ Bollywood celebrities (unless they are genuinely in the tribe)<br>
+        ✗ Brands that are "ethnic" or "sustainable" for marketing, not philosophy<br>
+        ✗ Anyone whose aesthetic is generic, clean, or trend-chasing<br>
+        ✗ Paid reviews that read like paid reviews
+      </div>
+    </div>
+
+    <div class="section" style="margin-top: 2rem;">
+      <div class="section-label">13 · ideal collaborators</div>
+    </div>
+    <div style="background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 1rem 1.1rem; border-left: 3px solid #0F6E56;">
+      <div style="font-size: 13px; color: var(--color-text-primary); line-height: 1.8;">
+        ✓ Indie musicians working with folk traditions (Prateek Kuhad adjacent, not Dua Lipa adjacent)<br>
+        ✓ Visual artists whose work references Indian symbolism or psychology<br>
+        ✓ Architects, designers, filmmakers who operate with cultural intentionality<br>
+        ✓ Anthropologists, writers, poets who engage with Indian oral traditions<br>
+        ✓ International curators and buyers who seek "mythology house" positioning
+      </div>
+    </div>
+  </div>
+
+  <!-- SCHEDULE -->
+  <div id="tab-schedule" class="tab-content hidden">
+    <div class="section">
+      <div class="section-label">14 · weekly content calendar</div>
+      <div class="section-title">The ritual week</div>
+      <div class="section-sub">Consistency is the ritual. Irregularity breaks the spell. Every week follows this structure — the content within it changes, the rhythm does not.</div>
+    </div>
+    <table class="sched">
+      <thead><tr><th>Day</th><th>Feed post</th><th>Reel</th><th>Stories (daily always)</th></tr></thead>
+      <tbody>
+        <tr>
+          <td style="font-weight:500">Monday</td>
+          <td>Symbol / mythology card — start the week with energy</td>
+          <td>—</td>
+          <td>Morning ritual story. "Today's forgotten energy." Poll.</td>
+        </tr>
+        <tr>
+          <td style="font-weight:500">Tuesday</td>
+          <td>Product as portal — one piece, its story, its emotion</td>
+          <td>Making process reel</td>
+          <td>Behind-the-scenes of artisan work. Raw texture content.</td>
+        </tr>
+        <tr>
+          <td style="font-weight:500">Wednesday</td>
+          <td>Artisan portrait or tribe feature</td>
+          <td>—</td>
+          <td>Community repost + context. Question the tribe poll.</td>
+        </tr>
+        <tr>
+          <td style="font-weight:500">Thursday</td>
+          <td>Desire/obsession — atmospheric, poetic</td>
+          <td>Mythology short film (60 sec)</td>
+          <td>Teaser if a drop is coming. Mythology fragment.</td>
+        </tr>
+        <tr>
+          <td style="font-weight:500">Friday</td>
+          <td>Collection editorial carousel (if new) or symbol post</td>
+          <td>—</td>
+          <td>Story of the week — 8–10 slides of forgotten mythology.</td>
+        </tr>
+        <tr>
+          <td style="font-weight:500">Saturday</td>
+          <td>—</td>
+          <td>Lookbook or collection film reel</td>
+          <td>Sacred location content. Artisan village visit. Folk market.</td>
+        </tr>
+        <tr>
+          <td style="font-weight:500">Sunday</td>
+          <td>Behind the codex — brand philosophy / collection origin</td>
+          <td>—</td>
+          <td>Quiet. One atmospheric image. One line of poetry. No CTA.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="margin-top: 1.5rem; background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 1rem 1.1rem;">
+      <div style="font-size: 13px; font-weight: 500; margin-bottom: 6px; color: var(--color-text-primary);">Best posting times (India + NRI)</div>
+      <div style="font-size: 13px; color: var(--color-text-secondary); line-height: 1.7;">
+        Feed posts: 7–9 AM IST (morning ritual audience) and 8–10 PM IST (evening wind-down)<br>
+        Reels: 6–8 PM IST Tuesday–Thursday for maximum reach<br>
+        Stories: 7 AM (morning), 1 PM (lunch), 9 PM (night) — 3 pulses daily
+      </div>
+    </div>
+  </div>
+
+  <!-- KPIs -->
+  <div id="tab-kpis" class="tab-content hidden">
+    <div class="section">
+      <div class="section-label">15 · metrics</div>
+      <div class="section-title">What Kavadea measures</div>
+      <div class="section-sub">Kavadea is a cult, not a mass brand. Measure depth of engagement, not width. A save matters more than a like. A DM matters more than a follow.</div>
+    </div>
+
+    <div class="kpi-grid" style="margin-bottom: 1.5rem;">
+      <div class="kpi">
+        <div class="kpi-num">Saves</div>
+        <div class="kpi-label">Most important metric. A save = "this belongs to me."</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-num">Shares</div>
+        <div class="kpi-label">Stories shared = tribe spreading the mythology.</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-num">DMs</div>
+        <div class="kpi-label">Unsolicited DMs = genuine emotional resonance.</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-num">Reel views 75%+</div>
+        <div class="kpi-label">Completion rate = the film held them.</div>
+      </div>
+    </div>
+
+    <div style="font-size: 13px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 8px;">Secondary metrics (still important)</div>
+    <div class="cards">
+      <div class="card"><div class="card-title">Story replies</div><div class="card-body">People answering polls or replying to myth fragments = active tribe members, not passive followers.</div></div>
+      <div class="card"><div class="card-title">Profile visits to bio link</div><div class="card-body">Funnel quality. Are reels converting curious strangers to interested buyers?</div></div>
+      <div class="card"><div class="card-title">Comment depth</div><div class="card-body">Long comments > many comments. "This feels like something I've always known" = brand working.</div></div>
+      <div class="card"><div class="card-title">Drop sell-through speed</div><div class="card-body">How fast do limited drops sell when announced on Instagram? This is the ultimate Instagram ROI measure.</div></div>
+    </div>
+
+    <div style="margin-top: 1.5rem; background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 1rem 1.1rem; border-left: 3px solid #534AB7;">
+      <div style="font-size: 13px; font-weight: 500; margin-bottom: 4px; color: #534AB7;">The one metric that matters most</div>
+      <div style="font-size: 13px; color: var(--color-text-secondary); line-height: 1.65;">When someone DMs: "I don't know why, but I feel like this was made for me" — that is Kavadea working perfectly. Track that sentiment. It is the brand's North Star signal on Instagram.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function showTab(id) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+    document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.remove('hidden');
+    event.target.classList.add('active');
+  }
+</script>
